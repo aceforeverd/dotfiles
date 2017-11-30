@@ -40,20 +40,13 @@ add_env_path "$NPM_HOME/bin" \
     "$GOPATH/bin" \
     "$GEM_PATH/bin" \
     "$YARN_HOME/bin" \
-    "$HOME/.local/bin"
+    "$HOME/.local/bin" \
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export SASS_LIBSASS_PATH=~/Git/libsass/
-export SASS_SPEC_PATH=~/Git/sass-spec/
 export GPG_TTY=$(tty)
 
 export PYTHONPATH=$HOME/.local/lib64/python3.4/site-packages/:$HOME/.local/lib64/python3.6/site-packages
-
-
-#export XMODIFIERS="@im=fcitx"
-#export QT_IM_MODULE=fcitx
-#export GTK_IM_MODULE=fcitx
 
 PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W\$\[\033[00m\] '
 
