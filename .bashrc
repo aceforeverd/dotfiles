@@ -22,6 +22,24 @@ function add_env_path {
     done
 }
 
+function add_man_path {
+    while [ $# -ge 1 ] ; do
+        if [[ -d "$1" && ! "$MANPATH" == *"$1"* ]] ; then
+            export MANPATH="$1":$MANPATH
+        fi
+        shift
+    done
+}
+
+function add_info_path {
+    while [ $# -ge 1 ] ; do
+        if [[ -d "$1" && ! "INFOPATH" == *"$1"* ]] ; then
+            export INFOPATH="$1":$INFOPATH
+        fi
+        shift
+    done
+}
+
 alias ls="ls -v --color=auto --group-directories-first"
 alias ll="ls -al"
 alias dbcli="dropbox-cli"
@@ -41,6 +59,14 @@ add_env_path "$NPM_HOME/bin" \
     "$GEM_PATH/bin" \
     "$YARN_HOME/bin" \
     "$HOME/.local/bin" \
+    "$HOME/.luarocks/bin" \
+    "$HOME/.dart-sdk/bin" \
+    "$HOME/.pub-cache/bin" \
+    "$HOME/.linuxbrew/bin" \
+
+add_man_path "$HOME/.linuxbrew/share/man"
+
+add_info_path "$HOME/.linuxbrew/share/info"
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8

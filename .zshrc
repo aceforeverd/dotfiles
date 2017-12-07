@@ -97,7 +97,7 @@ promptinit;
 # util
 function add_env_path {
     while [ $# -ge 1 ]; do
-        [[ -d "$1" && ! "$1" == *"$1"* ]] && export PATH="$1":$PATH
+        [[ -d "$1" && ! "$1" == *$1* ]] && export PATH="$1":$PATH
         shift
     done
 }
@@ -120,7 +120,11 @@ add_env_path "$NPM_HOME/bin" \
     "$GOPATH/bin" \
     "$GEM_PATH/bin" \
     "$YARN_HOME/bin" \
-    "$HOME/.local/bin"
+    "$HOME/.local/bin" \
+    "$HOME/.luarocks/bin" \
+    "$HOME/.dart-sdk/bin" \
+    "$HOME/.pub-cache/bin" \
+    "$HOME/.linuxbrew/bin" \
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -132,3 +136,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# . $HOME/.rustup.zsh
