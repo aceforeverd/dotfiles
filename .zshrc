@@ -110,6 +110,10 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
 
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export COMPOSER_HOME="$HOME/.composer"
+
 export GOPATH=$HOME/.go
 GEM_PATH=$HOME/.gem/ruby/2.4.0
 CARGO_HOME=$HOME/.cargo
@@ -125,9 +129,6 @@ add_env_path "$NPM_HOME/bin" \
     "$HOME/.dart-sdk/bin" \
     "$HOME/.pub-cache/bin" \
     "$HOME/.linuxbrew/bin" \
-
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

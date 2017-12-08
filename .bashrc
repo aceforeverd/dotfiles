@@ -47,6 +47,11 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
 
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export GPG_TTY=$(tty)
+
+export COMPOSER_HOME="$HOME/.composer"
 export GOPATH=$HOME/.go
 GEM_PATH=$HOME/.gem/ruby/2.4.0
 CARGO_HOME=$HOME/.cargo
@@ -63,16 +68,14 @@ add_env_path "$NPM_HOME/bin" \
     "$HOME/.dart-sdk/bin" \
     "$HOME/.pub-cache/bin" \
     "$HOME/.linuxbrew/bin" \
+    "$COMPOSER_HOME/vendor/bin" \
 
 add_man_path "$HOME/.linuxbrew/share/man"
 
 add_info_path "$HOME/.linuxbrew/share/info"
 
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export GPG_TTY=$(tty)
 
-export PYTHONPATH=$HOME/.local/lib64/python3.4/site-packages/:$HOME/.local/lib64/python3.6/site-packages
+# export PYTHONPATH=$HOME/.local/lib64/python3.6/site-packages
 
 PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W\$\[\033[00m\] '
 
