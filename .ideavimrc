@@ -1,0 +1,6 @@
+set novisualbell
+set noerrorbells
+set hlsearch
+set incsearch
+set scrolloff=4
+

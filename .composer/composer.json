@@ -1,6 +1,11 @@
 {
     "require": {
         "JetBrains/phpstorm-stubs": "dev-master",
-        "felixfbecker/language-server": "^5.1"
+        "felixfbecker/language-server": "^5.1",
+        "phpactor/worse-reflection": "dev-master",
+        "phpactor/class-to-file": "dev-master",
+        "phpbench/container": "^1.1",
+        "phpactor/source-code-filesystem": "dev-master",
+        "symfony/yaml": "^4.0"
     }
 }
