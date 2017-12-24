@@ -57,6 +57,9 @@ plugins=(
     colored-man-pages
     gpg-agent
     docker
+    docker-compose
+    docker-machine
+    composer
 )
 
 source $ZSH/oh-my-zsh.sh

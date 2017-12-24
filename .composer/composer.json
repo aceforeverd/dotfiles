@@ -6,6 +6,8 @@
         "phpactor/class-to-file": "dev-master",
         "phpbench/container": "^1.1",
         "phpactor/source-code-filesystem": "dev-master",
-        "symfony/yaml": "^4.0"
+        "symfony/yaml": "^4.0",
+        "react/filesystem": "dev-master",
+        "mkusher/react-co": "dev-master"
     }
 }
