@@ -118,7 +118,7 @@ export LANGUAGE=en_US.UTF-8
 export COMPOSER_HOME="$HOME/.composer"
 
 export GOPATH=$HOME/.go
-GEM_PATH=$HOME/.gem/ruby/2.4.0
+GEM_PATH=$HOME/.gem/ruby/2.5.0
 CARGO_HOME=$HOME/.cargo
 NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
@@ -131,7 +131,6 @@ add_env_path "$NPM_HOME/bin" \
     "$HOME/.luarocks/bin" \
     "$HOME/.dart-sdk/bin" \
     "$HOME/.pub-cache/bin" \
-    "$HOME/.linuxbrew/bin" \
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -140,3 +139,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+autoload -U +X bashcompinit && bashcompinit
+
+# go get -u github.com/posener/complete/gocomplete
+complete -o nospace -C /home/ace/.go/bin/gocomplete go
+
+[ -r "$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/zsh-completion" ] && \
+    . "$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/zsh-completion"

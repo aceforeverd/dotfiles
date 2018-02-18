@@ -41,6 +41,7 @@ function add_info_path {
 }
 
 alias ls="ls -v --color=auto --group-directories-first"
+alias l="ls -a"
 alias ll="ls -al"
 alias dbcli="dropbox-cli"
 alias cp="cp -v"
@@ -50,13 +51,17 @@ alias rm="rm -v"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export GPG_TTY=$(tty)
+if [[ -n "$SSH_CONNECTION" ]] ; then
+    export PINENTRY_USER_DATA="USER_CURSES=1"
+fi
 
 export COMPOSER_HOME="$HOME/.composer"
 export GOPATH=$HOME/.go
-GEM_PATH=$HOME/.gem/ruby/2.4.0
+GEM_PATH=$HOME/.gem/ruby/2.5.0
 CARGO_HOME=$HOME/.cargo
 NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 
 add_env_path "$NPM_HOME/bin" \
     "$CARGO_HOME/bin" \
@@ -67,15 +72,7 @@ add_env_path "$NPM_HOME/bin" \
     "$HOME/.luarocks/bin" \
     "$HOME/.dart-sdk/bin" \
     "$HOME/.pub-cache/bin" \
-    "$HOME/.linuxbrew/bin" \
     "$COMPOSER_HOME/vendor/bin" \
-
-add_man_path "$HOME/.linuxbrew/share/man"
-
-add_info_path "$HOME/.linuxbrew/share/info"
-
-
-# export PYTHONPATH=$HOME/.local/lib64/python3.6/site-packages
 
 PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W\$\[\033[00m\] '
 
@@ -89,3 +86,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# go get -u github.com/posener/complete/gocomplete
+complete -C /home/ace/.go/bin/gocomplete go
+
+COMPOSER_COMPLETE="$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/bash-completion"
+[ -r "$COMPOSER_COMPLETE" ] && . "$COMPOSER_COMPLETE"

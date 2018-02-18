@@ -2,5 +2,7 @@ set novisualbell
 set noerrorbells
 set hlsearch
 set incsearch
+set ignorecase
 set scrolloff=4
-
+set wildmenu
+set nocompatible
