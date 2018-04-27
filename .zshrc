@@ -100,7 +100,7 @@ promptinit;
 # util
 function add_env_path {
     while [ $# -ge 1 ]; do
-        [[ -d "$1" && ! "$1" == *$1* ]] && export PATH="$1":$PATH
+        [[ -d "$1" && ! "$PATH" == *$1* ]] && export PATH="$1":$PATH
         shift
     done
 }
@@ -122,6 +122,8 @@ GEM_PATH=$HOME/.gem/ruby/2.5.0
 CARGO_HOME=$HOME/.cargo
 NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
+
+
 add_env_path "$NPM_HOME/bin" \
     "$CARGO_HOME/bin" \
     "$GOPATH/bin" \
