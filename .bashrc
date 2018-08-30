@@ -62,6 +62,9 @@ CARGO_HOME=$HOME/.cargo
 NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_COMMON_LIB_NATIVE_DIR=/opt/hadoop-2.9.1/lib/native
 
 add_env_path "$NPM_HOME/bin" \
     "$CARGO_HOME/bin" \
@@ -92,3 +95,9 @@ complete -C /home/ace/.go/bin/gocomplete go
 
 COMPOSER_COMPLETE="$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/bash-completion"
 [ -r "$COMPOSER_COMPLETE" ] && . "$COMPOSER_COMPLETE"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then source '/opt/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then source '/opt/google-cloud-sdk/completion.bash.inc'; fi

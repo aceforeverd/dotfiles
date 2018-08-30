@@ -60,6 +60,12 @@ plugins=(
     docker-compose
     docker-machine
     composer
+    last-working-dir
+    golang
+    rust
+    gradle
+    zsh-autosuggestions
+    fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,7 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+fpath+="$HOME/.config/zsh"
+
 autoload -U compinit promptinit
+autoload -U +X bashcompinit && bashcompinit
 compinit
 promptinit;
 
@@ -123,6 +132,7 @@ CARGO_HOME=$HOME/.cargo
 NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
 
+export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
 
 add_env_path "$NPM_HOME/bin" \
     "$CARGO_HOME/bin" \
@@ -139,9 +149,8 @@ add_env_path "$NPM_HOME/bin" \
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-autoload -U +X bashcompinit && bashcompinit
 
 # go get -u github.com/posener/complete/gocomplete
 complete -o nospace -C /home/ace/.go/bin/gocomplete go
