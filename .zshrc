@@ -129,12 +129,11 @@ export COMPOSER_HOME="$HOME/.composer"
 export GOPATH=$HOME/.go
 GEM_PATH=$HOME/.gem/ruby/2.5.0
 CARGO_HOME=$HOME/.cargo
-NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
 
 export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
 
-add_env_path "$NPM_HOME/bin" \
+add_env_path \
     "$CARGO_HOME/bin" \
     "$GOPATH/bin" \
     "$GEM_PATH/bin" \

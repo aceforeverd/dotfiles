@@ -91,7 +91,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # go get -u github.com/posener/complete/gocomplete
-complete -C /home/ace/.go/bin/gocomplete go
+complete -C $HOME/.go/bin/gocomplete go
 
 COMPOSER_COMPLETE="$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/bash-completion"
 [ -r "$COMPOSER_COMPLETE" ] && . "$COMPOSER_COMPLETE"
