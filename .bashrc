@@ -13,7 +13,7 @@ function sf {
     [[ -n "$files" ]] && ${EDITOR:-vim} $files
 }
 
-function add_env_path {
+add_env_path() {
     while [ $# -ge 1 ]; do
         if [[ -d "$1" && ! "$PATH" == *"$1"* ]] ; then
             export PATH="$1":$PATH
@@ -22,7 +22,7 @@ function add_env_path {
     done
 }
 
-function add_man_path {
+add_man_path() {
     while [ $# -ge 1 ] ; do
         if [[ -d "$1" && ! "$MANPATH" == *"$1"* ]] ; then
             export MANPATH="$1":$MANPATH
@@ -31,7 +31,7 @@ function add_man_path {
     done
 }
 
-function add_info_path {
+add_info_path() {
     while [ $# -ge 1 ] ; do
         if [[ -d "$1" && ! "INFOPATH" == *"$1"* ]] ; then
             export INFOPATH="$1":$INFOPATH
@@ -57,16 +57,15 @@ fi
 
 export COMPOSER_HOME="$HOME/.composer"
 export GOPATH=$HOME/.go
-GEM_PATH=$HOME/.gem/ruby/2.5.0
+GEM_PATH=$HOME/.gem/ruby/2.6.0
 CARGO_HOME=$HOME/.cargo
-NPM_HOME=$HOME/.npm_global
 YARN_HOME=$HOME/.config/yarn
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
-export HADOOP_HOME=/opt/hadoop-2.9.1
-export HADOOP_COMMON_LIB_NATIVE_DIR=/opt/hadoop-2.9.1/lib/native
+export TERMINFO=/etc/terminfo
+# export NVIM_PYTHON_LOG_FILE=/home/ace/nvim-python.log
 
-add_env_path "$NPM_HOME/bin" \
+add_env_path \
     "$CARGO_HOME/bin" \
     "$GOPATH/bin" \
     "$GEM_PATH/bin" \
