@@ -156,3 +156,7 @@ complete -o nospace -C /home/ace/.go/bin/gocomplete go
 
 [ -r "$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/zsh-completion" ] && \
     . "$HOME/.composer/vendor/stecman/composer-bash-completion-plugin/hooks/zsh-completion"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/ace/.sdkman"
+[[ -s "/home/ace/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ace/.sdkman/bin/sdkman-init.sh"
