@@ -3,43 +3,6 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-function sf {
-    if [ "$#" -lt 1 ]; then echo "Supply string to search for!"; return 1; fi
-    printf -v search "%q" "$*"
-    include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,c,go,hs,rb,conf,fa,lst"
-    exclude=".config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist"
-    rg_command='rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" -g "*.{'$include'}" -g "!{'$exclude'}/*"'
-    files=`eval $rg_command $search | fzf --ansi --multi --reverse | awk -F ':' '{print $1":"$2":"$3}'`
-    [[ -n "$files" ]] && ${EDITOR:-vim} $files
-}
-
-add_env_path() {
-    while [ $# -ge 1 ]; do
-        if [[ -d "$1" && ! "$PATH" == *"$1"* ]] ; then
-            export PATH="$1":$PATH
-        fi
-        shift
-    done
-}
-
-add_man_path() {
-    while [ $# -ge 1 ] ; do
-        if [[ -d "$1" && ! "$MANPATH" == *"$1"* ]] ; then
-            export MANPATH="$1":$MANPATH
-        fi
-        shift
-    done
-}
-
-add_info_path() {
-    while [ $# -ge 1 ] ; do
-        if [[ -d "$1" && ! "INFOPATH" == *"$1"* ]] ; then
-            export INFOPATH="$1":$INFOPATH
-        fi
-        shift
-    done
-}
-
 alias ls="ls -v --color=auto --group-directories-first"
 alias l="ls -a"
 alias ll="ls -al"
@@ -63,22 +26,30 @@ YARN_HOME=$HOME/.config/yarn
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
 export TERMINFO=/etc/terminfo
-# export NVIM_PYTHON_LOG_FILE=/home/ace/nvim-python.log
+export NVIM_PYTHON_LOG_FILE=/home/ace/nvim-python.log
 
-add_env_path \
-    "$CARGO_HOME/bin" \
-    "$GOPATH/bin" \
-    "$GEM_PATH/bin" \
-    "$YARN_HOME/bin" \
-    "$HOME/.local/bin" \
-    "$HOME/.luarocks/bin" \
-    "$HOME/.dart-sdk/bin" \
-    "$HOME/.pub-cache/bin" \
-    "$COMPOSER_HOME/vendor/bin" \
+if [ -r "$HOME/.common/common.bash" ] ; then
+    . "$HOME/.common/common.bash"
+
+    add_env_path \
+        "$CARGO_HOME/bin" \
+        "$GOPATH/bin" \
+        "$GEM_PATH/bin" \
+        "$YARN_HOME/bin" \
+        "$HOME/.local/bin" \
+        "$HOME/.luarocks/bin" \
+        "$HOME/.dart-sdk/bin" \
+        "$HOME/.pub-cache/bin" \
+        "$COMPOSER_HOME/vendor/bin" \
+        /mnt/extra/android-sdk/platform-tools \
+        /mnt/extra/android-sdk/tools/bin \
+        /mnt/extra/android-sdk/tools
+fi
+
 
 PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W\$\[\033[00m\] '
 
-for sh in ~/.local/share/bash-completion/*.bash ; do
+for sh in $HOME/.config/bash_completion.d/*.bash ; do
     [ -r "$sh" ] && . "$sh"
 done
 

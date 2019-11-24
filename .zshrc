@@ -63,7 +63,6 @@ plugins=(
     last-working-dir
     golang
     rust
-    gradle
     zsh-autosuggestions
     fast-syntax-highlighting
 )
@@ -125,23 +124,32 @@ alias rm="rm -v"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export COMPOSER_HOME="$HOME/.composer"
+export GIT_ASKPASS=/usr/bin/ksshaskpass
 
 export GOPATH=$HOME/.go
 GEM_PATH=$HOME/.gem/ruby/2.5.0
 CARGO_HOME=$HOME/.cargo
 YARN_HOME=$HOME/.config/yarn
 
-export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118"
+export JAVA_OPTS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118 -Xmx8g"
 
-add_env_path \
-    "$CARGO_HOME/bin" \
-    "$GOPATH/bin" \
-    "$GEM_PATH/bin" \
-    "$YARN_HOME/bin" \
-    "$HOME/.local/bin" \
-    "$HOME/.luarocks/bin" \
-    "$HOME/.dart-sdk/bin" \
-    "$HOME/.pub-cache/bin" \
+if [ -r "$HOME/.common/common.zsh" ]; then
+    . "$HOME/.common/common.zsh"
+    add_env_path \
+        "$CARGO_HOME/bin" \
+        "$GOPATH/bin" \
+        "$GEM_PATH/bin" \
+        "$YARN_HOME/bin" \
+        "$HOME/.local/bin" \
+        "$HOME/.luarocks/bin" \
+        "$HOME/.dart-sdk/bin" \
+        "$HOME/.pub-cache/bin" \
+        "$COMPOSER_HOME/vendor/bin" \
+        "$HOME/.stack/bin" \
+        /mnt/extra/android-sdk/platform-tools \
+        /mnt/extra/android-sdk/tools \
+        /mnt/extra/android-sdk/tools/bin
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
