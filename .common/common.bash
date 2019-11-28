@@ -42,3 +42,11 @@ add_info_path() {
         shift
     done
 }
+
+
+alias ls="ls -v --color=auto --group-directories-first"
+alias l="ls -a"
+alias ll="ls -al"
+alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"

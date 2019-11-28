@@ -1,15 +1,8 @@
 if [[ $- != *i* ]] ; then
-    # Shell is non-interactive.  Be done now!
-    return
+    # Shell is non-interactive.  Be done now!  return
 fi
 
-alias ls="ls -v --color=auto --group-directories-first"
-alias l="ls -a"
-alias ll="ls -al"
 alias dbcli="dropbox-cli"
-alias cp="cp -v"
-alias mv="mv -v"
-alias rm="rm -v"
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
