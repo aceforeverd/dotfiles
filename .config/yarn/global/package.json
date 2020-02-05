@@ -1,19 +1,11 @@
 {
   "dependencies": {
-    "@angular/cli": "^6.1.4",
-    "browserify": "^16.2.2",
-    "elm": "^0.18.0",
-    "ember-cli": "^3.3.0",
-    "eslint": "^5.4.0",
-    "javascript-typescript-langserver": "^2.9.4",
-    "javascript-typescript-langserver-fast": "^0.0.6",
-    "neovim": "^4.2.1",
-    "prettier": "^1.14.2",
-    "tern": "^0.21.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.1",
-    "vue-language-server": "^0.0.33",
-    "webpack": "^4.16.5",
-    "webpack-serve": "^2.0.2"
+    "eslint": "^6.8.0",
+    "javascript-typescript-langserver": "^2.11.3",
+    "neovim": "^4.5.0",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.2",
+    "vim-language-server": "^1.4.2",
+    "webpack": "^4.41.5"
   }
 }

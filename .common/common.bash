@@ -43,6 +43,12 @@ add_info_path() {
     done
 }
 
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+fi
 
 alias ls="ls -v --color=auto --group-directories-first"
 alias l="ls -a"
