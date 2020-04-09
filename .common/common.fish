@@ -5,8 +5,6 @@ if not functions -q fisher
     fish -c fisher
 end
 
-set -x GPG_TTY (tty)
-
 # see https://superuser.com/questions/776008/how-to-remove-a-path-from-path-variable-in-fish
 if not functions -q addpaths
     function addpaths
@@ -30,3 +28,5 @@ if not functions -q removepath
 
     funcsave removepath
 end
+
+set -x GPG_TTY (tty)
