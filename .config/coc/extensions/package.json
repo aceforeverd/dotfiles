@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "coc-angular": ">=0.901.0",
+    "coc-clangd": ">=0.3.1",
     "coc-css": ">=1.2.2",
     "coc-dictionary": ">=1.2.2",
     "coc-emoji": ">=1.2.3",

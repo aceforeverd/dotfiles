@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bash-language-server": "^1.11.1",
     "eslint": "^6.8.0",
     "javascript-typescript-langserver": "^2.11.3",
     "neovim": "^4.5.0",
