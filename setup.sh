@@ -19,7 +19,7 @@
 set -eE
 set -o nounset
 
-_ROOT=$(dirname "$0")
+_ROOT=$(realpath "$(dirname "$0")")
 cd "$_ROOT"
 
 link_dotfile()
@@ -34,6 +34,7 @@ link_dotfile '.bashrc'
 link_dotfile '.zshrc'
 
 mkdir -p "$HOME"/.config/fish
+rm -f "$HOME/.config/fish/fishfile"
 ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fishfile"
 
 echo "if test -r $_ROOT/.common/common.fish
