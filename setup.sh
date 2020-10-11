@@ -25,15 +25,13 @@ cd "$_ROOT"
 link_dotfile()
 {
     local _file=$1
-    if [ -e "$HOME/$_file" ]; then
-        mv "$HOME/$_file" "$HOME/$_file.backup"
-    fi
+    rm -f "$HOME/$_file"
     ln -s "$_ROOT/$_file" "$HOME/$_file"
 }
 
-link_dotfile .tmux.conf
-link_dotfile .bashrc
-link_dotfile .zshrc
+link_dotfile '.tmux.conf'
+link_dotfile '.bashrc'
+link_dotfile '.zshrc'
 
 mkdir -p "$HOME"/.config/fish
 ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fishfile"
