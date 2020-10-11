@@ -10,8 +10,8 @@ if [[ -n "$SSH_CONNECTION" ]] ; then
     export PINENTRY_USER_DATA="USER_CURSES=1"
 fi
 
-if [ -r "$HOME/.common/common.bash" ] ; then
-    . "$HOME/.common/common.bash"
+if [ -r "$HOME/.dotfiles/.common/common.bash" ] ; then
+    . "$HOME/.dotfiles/.common/common.bash"
 
     # add_env_path
 fi

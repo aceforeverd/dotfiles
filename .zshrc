@@ -28,12 +28,6 @@
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# SDKMAN
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN/bin/sdkman-init.sh" ]] && source "$SDKMAN/bin/sdkman-init.sh"
-
-export GOPATH=$HOME/go
-
 COMMON_PATH=$HOME/.dotfiles/.common/common.zsh
 if [ -r "$COMMON_PATH" ] ; then
 	. "$COMMON_PATH"
