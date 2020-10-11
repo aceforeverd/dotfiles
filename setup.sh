@@ -31,8 +31,11 @@ link_dotfile()
     ln -s "$_ROOT/$_file" "$HOME/$_file"
 }
 
-link_dotfile .tmux.conf .bashrc .zshrc
+link_dotfile .tmux.conf
+link_dotfile .bashrc
+link_dotfile .zshrc
 
+mkdir -p "$HOME"/.config/fish
 ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fishfile"
 
 echo "if test -r $_ROOT/.common/common.fish
