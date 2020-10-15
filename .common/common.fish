@@ -8,25 +8,45 @@ end
 # see https://superuser.com/questions/776008/how-to-remove-a-path-from-path-variable-in-fish
 if not functions -q addpaths
     function addpaths
-        contains -- $argv $fish_user_paths
-        or set -U fish_user_paths $fish_user_paths $argv
+        function addpath
+            if count argv > /dev/null
+                set -l pth (realpath $argv[1])
+                contains -- $pth $fish_user_paths
+                or set -U fish_user_paths $fish_user_paths $pth
+            end
+        end
+
+        for ph in $argv
+            addpath $ph
+        end
+
         echo "Updated PATH: $PATH"
     end
 
     funcsave addpaths
 end
 
-if not functions -q removepath
-    function removepath
-        if set -l index (contains -i $argv[1] $PATH)
-            set --erase --universal fish_user_paths[$index]
-            echo "Updated PATH: $PATH"
-        else
-            echo "$argv[1] not found in PATH: $PATH"
+function arguments
+
+end
+
+if not functions -q removepaths
+    function removepaths
+        function removepath
+            set -l pth (realpath $argv[1])
+            if set -l index (contains -i $pth $PATH)
+                set --erase --universal fish_user_paths[$index]
+            else
+                echo "$pth not found in PATH: $PATH"
+            end
         end
+        for ph in $argv
+            removepath $ph
+        end
+        echo "Updated PATH: $PATH"
     end
 
-    funcsave removepath
+    funcsave removepaths
 end
 
 set -x GPG_TTY (tty)
