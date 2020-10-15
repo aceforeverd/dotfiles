@@ -26,10 +26,6 @@ if not functions -q addpaths
     funcsave addpaths
 end
 
-function arguments
-
-end
-
 if not functions -q removepaths
     function removepaths
         function removepath
