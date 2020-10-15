@@ -1,5 +1,5 @@
-#!/bin/zsh
-# zshrc example
+#!/bin/bash
+# setup.sh
 # Copyright (c) 2020 Ace <teapot@aceforeverd.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,28 +16,27 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+set -eE
+set -o nounset
 
-# Proxys
-# PROXY_URL=http://127.0.0.1:$PORT
-# export ALL_PROXY=$PROXY_URL
-# export HTTP_PROXY=$PROXY_URL
-# export HTTPS_PROXY=$PROXY_URL
-# export NO_PROXY=127.0.0.1
+_ROOT=$(realpath "$(dirname "$0")")
+cd "$_ROOT"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-COMMON_PATH=$HOME/.dotfiles/.common/common.zsh
-if [ -r "$COMMON_PATH" ] ; then
-	. "$COMMON_PATH"
-
-	# custom path
-	# add_env_path
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
+link_dotfile()
+{
+    local _file=$1
+    rm -f "$HOME/$_file"
+    ln -s "$_ROOT/$_file" "$HOME/$_file"
 }
+
+link_dotfile '.tmux.conf'
+link_dotfile '.bashrc'
+link_dotfile '.zshrc'
+
+mkdir -p "$HOME"/.config/fish
+rm -f "$HOME/.config/fish/fishfile"
+ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fishfile"
+
+echo "if test -r $_ROOT/.common/common.fish
+    source $_ROOT/.common/common.fish
+end" > "$HOME/.config/fish/config.fish"
