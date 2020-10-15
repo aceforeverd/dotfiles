@@ -30,7 +30,7 @@ if not functions -q removepaths
     function removepaths
         function removepath
             set -l pth (realpath $argv[1])
-            if set -l index (contains -i $pth $PATH)
+            if set -l index (contains -i $pth $fish_user_paths)
                 set --erase --universal fish_user_paths[$index]
             else
                 echo "$pth not found in PATH: $PATH"
