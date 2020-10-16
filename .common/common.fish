@@ -9,10 +9,14 @@ end
 if not functions -q addpaths
     function addpaths
         function addpath
-            if count argv > /dev/null
-                set -l pth (realpath $argv[1])
-                contains -- $pth $fish_user_paths
-                or set -U fish_user_paths $fish_user_paths $pth
+            if count $argv > /dev/null
+                if ! test -d $argv[1]
+                    echo -e $argv[1] not a existing path
+                else
+                    set -l pth (realpath $argv[1])
+                    contains -- $pth $fish_user_paths
+                    or set -U fish_user_paths $fish_user_paths $pth
+                end
             end
         end
 
@@ -36,6 +40,7 @@ if not functions -q removepaths
                 echo "$pth not found in PATH: $PATH"
             end
         end
+
         for ph in $argv
             removepath $ph
         end
