@@ -1,4 +1,3 @@
-
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
     curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
@@ -11,7 +10,7 @@ if not functions -q addpaths
         function addpath
             if count $argv > /dev/null
                 if ! test -d $argv[1]
-                    echo -e $argv[1] not a existing path
+                    set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
                 else
                     set -l pth (realpath $argv[1])
                     contains -- $pth $fish_user_paths
@@ -37,7 +36,7 @@ if not functions -q removepaths
             if set -l index (contains -i $pth $fish_user_paths)
                 set --erase --universal fish_user_paths[$index]
             else
-                echo "$pth not found in PATH: $PATH"
+                set_color red; echo -e \'$pth\' not found in fish_user_paths: $fish_user_paths; set_color normal
             end
         end
 
