@@ -13,8 +13,12 @@ if not functions -q addpaths
                     set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
                 else
                     set -l pth (realpath $argv[1])
-                    contains -- $pth $fish_user_paths
-                    or set -U fish_user_paths $fish_user_paths $pth
+                    if contains -- $pth $fish_user_paths
+                        set_color yellow; echo -e $pth already added; set_color normal
+                    else
+                        set -U fish_user_paths $fish_user_paths $pth
+                        set_color green; echo -e added $pth to fish_user_paths; set_color normal
+                    end
                 end
             end
         end
@@ -22,8 +26,6 @@ if not functions -q addpaths
         for ph in $argv
             addpath $ph
         end
-
-        echo "Updated PATH: $PATH"
     end
 
     funcsave addpaths
@@ -35,6 +37,7 @@ if not functions -q removepaths
             set -l pth (realpath $argv[1])
             if set -l index (contains -i $pth $fish_user_paths)
                 set --erase --universal fish_user_paths[$index]
+                set_color green; echo -e removed $pth from fish_user_paths; set_color normal
             else
                 set_color red; echo -e \'$pth\' not found in fish_user_paths: $fish_user_paths; set_color normal
             end
@@ -43,7 +46,6 @@ if not functions -q removepaths
         for ph in $argv
             removepath $ph
         end
-        echo "Updated PATH: $PATH"
     end
 
     funcsave removepaths
