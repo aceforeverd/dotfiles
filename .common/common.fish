@@ -12,7 +12,7 @@ if not functions -q addpaths
                 if ! test -d $argv[1]
                     set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
                 else
-                    set -l pth (realpath $argv[1])
+                    set -l pth (realpath -s $argv[1])
                     if contains -- $pth $fish_user_paths
                         set_color yellow; echo -e $pth already added; set_color normal
                     else
@@ -34,7 +34,8 @@ end
 if not functions -q removepaths
     function removepaths
         function removepath
-            set -l pth (realpath $argv[1])
+            set -l pth (realpath -s $argv[1] 2> /dev/null); or set -l pth $argv[1]
+
             if set -l index (contains -i $pth $fish_user_paths)
                 set --erase --universal fish_user_paths[$index]
                 set_color green; echo -e removed $pth from fish_user_paths; set_color normal
