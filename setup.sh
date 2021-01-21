@@ -19,14 +19,19 @@
 set -eE
 set -o nounset
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 _ROOT=$(realpath "$(dirname "$0")")
 cd "$_ROOT"
 
 link_dotfile()
 {
     local _file=$1
-    rm -f "$HOME/$_file"
+    mv "$HOME/$_file" "$HOME/$_file.backup"
     ln -s "$_ROOT/$_file" "$HOME/$_file"
+    echo -e "${GREEN}setted $_file ${NC}"
 }
 
 link_dotfile '.tmux.conf'
@@ -36,6 +41,8 @@ link_dotfile '.zshrc'
 mkdir -p "$HOME"/.config/fish
 rm -f "$HOME/.config/fish/fishfile"
 ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fish_plugins"
+
+link_dotfile '.config/bat/config'
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
