@@ -29,7 +29,13 @@ cd "$_ROOT"
 link_dotfile()
 {
     local _file=$1
-    mv "$HOME/$_file" "$HOME/$_file.backup"
+    if [ -e "$HOME/$_file" ]; then
+        mv "$HOME/$_file" "$HOME/$_file.backup"
+    fi
+
+    if [ -n "$(basename "$_file")" ]; then
+        mkdir -p "$(basename "$_file")"
+    fi
     ln -s "$_ROOT/$_file" "$HOME/$_file"
     echo -e "${GREEN}setted $_file ${NC}"
 }
@@ -38,10 +44,7 @@ link_dotfile '.tmux.conf'
 link_dotfile '.bashrc'
 link_dotfile '.zshrc'
 
-mkdir -p "$HOME"/.config/fish
-rm -f "$HOME/.config/fish/fishfile"
-ln -s "$_ROOT/.bundle/fishfile" "$HOME/.config/fish/fish_plugins"
-
+link_dotfile ".config/fish/fish_plugins"
 link_dotfile '.config/bat/config'
 
 echo "if test -r $_ROOT/.common/common.fish
