@@ -33,8 +33,10 @@ link_dotfile()
         mv "$HOME/$_file" "$HOME/$_file.backup"
     fi
 
-    if [ -n "$(basename "$_file")" ]; then
-        mkdir -p "$(basename "$_file")"
+    local _dir
+    _dir=$(dirname "$_file")
+    if [[ "$_dir" != '.' && ! -d "$_dir" ]]; then
+        mkdir -p "$_dir"
     fi
     ln -s "$_ROOT/$_file" "$HOME/$_file"
     echo -e "${GREEN}setted $_file ${NC}"
