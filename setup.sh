@@ -36,6 +36,7 @@ link_dotfile()
     local _dir
     _dir=$(dirname "$_file")
     if [[ "$_dir" != '.' && ! -d "$_dir" ]]; then
+        echo -e "${GREEN} creating directory $HOME/$_dir${NC}"
         mkdir -p "$HOME/$_dir"
     fi
     ln -s "$_ROOT/$_file" "$HOME/$_file"
@@ -51,4 +52,4 @@ link_dotfile '.config/bat/config'
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
-end" > "$HOME/.config/fish/config.fish"
+end" >> "$HOME/.config/fish/config.fish"
