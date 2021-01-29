@@ -36,7 +36,7 @@ link_dotfile()
     local _dir
     _dir=$(dirname "$_file")
     if [[ "$_dir" != '.' && ! -d "$_dir" ]]; then
-        mkdir -p "$_dir"
+        mkdir -p "$HOME/$_dir"
     fi
     ln -s "$_ROOT/$_file" "$HOME/$_file"
     echo -e "${GREEN}setted $_file ${NC}"
