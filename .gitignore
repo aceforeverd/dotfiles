@@ -1,6 +1,2 @@
-*
-!/.*
 *.tmp
 *.log
-!./.config/yarn/global/package.json
-!./.composer/composer.json
