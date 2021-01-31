@@ -38,63 +38,35 @@ function fish_path_rm
     set -l fish_variable $argv[1]
     set -l pth (realpath -s $argv[2] 2> /dev/null); or set -l pth $argv[2]
 
-    # must use "$fish_variable"[$index] in set -e, others seems not work
-    fish -c "
-    if set -l index (contains -i $pth \$$fish_variable)
-        set -e -U "$fish_variable"[$index]
+
+    set -l index (fish -c "contains -i $pth \$$fish_variable; or echo 0")
+    if test $index -gt 0
+        set -l path_removing "$fish_variable"[$index]
+        fish -c "set -e -U $path_removing"
         set_color green; echo -e removed $pth from $fish_variable; set_color normal
     else
-        set_color red; echo -e \'$pth\' not found in $fish_variable: \$$fish_variable; set_color normal
+        set_color red; echo -e \'$pth\' not found in $fish_variable; set_color normal
     end
-    "
 end
 
-# see https://superuser.com/questions/776008/how-to-remove-a-path-from-path-variable-in-fish
-if not functions -q addpaths
-    function addpaths
-        function addpath
-            if count $argv > /dev/null
-                if ! test -d $argv[1]
-                    set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
-                else
-                    set -l pth (realpath -s $argv[1])
-                    if contains -- $pth $fish_user_paths
-                        set_color yellow; echo -e $pth already added; set_color normal
-                    else
-                        set -U fish_user_paths $fish_user_paths $pth
-                        set_color green; echo -e added $pth to fish_user_paths; set_color normal
-                    end
-                end
-            end
-        end
-
+if not functions -q fish_user_paths_add
+    function fish_user_paths_add
         for ph in $argv
-            addpath $ph
+            fish_path_add fish_user_paths $ph
         end
     end
 
-    funcsave addpaths
+    funcsave fish_user_paths_add
 end
 
-if not functions -q removepaths
-    function removepaths
-        function removepath
-            set -l pth (realpath -s $argv[1] 2> /dev/null); or set -l pth $argv[1]
-
-            if set -l index (contains -i $pth $fish_user_paths)
-                set --erase --universal fish_user_paths[$index]
-                set_color green; echo -e removed $pth from fish_user_paths; set_color normal
-            else
-                set_color red; echo -e \'$pth\' not found in fish_user_paths: $fish_user_paths; set_color normal
-            end
-        end
-
+if not functions -q fish_user_paths_rm
+    function fish_user_paths_rm
         for ph in $argv
-            removepath $ph
+            fish_path_rm fish_user_paths $ph
         end
     end
 
-    funcsave removepaths
+    funcsave fish_user_paths_rm
 end
 
 if not functions -q fish_complete_path_add
