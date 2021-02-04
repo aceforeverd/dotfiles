@@ -36,7 +36,7 @@ link_dotfile()
     local _dir
     _dir="$HOME/$(dirname "$_file")"
     if [[ "$_dir" != '.' && ! -d "$_dir" ]]; then
-        echo -e "${GREEN} creating directory $HOME/$_dir${NC}"
+        echo -e "${GREEN} creating directory $_dir${NC}"
         mkdir -p "$_dir"
     fi
     ln -s "$_ROOT/$_file" "$HOME/$_file"
