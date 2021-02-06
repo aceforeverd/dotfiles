@@ -34,6 +34,9 @@ jobs:
         
       - name: install fish
         uses: fish-actions/install-fish@v1.1.0
+      
+      - name: set fisher manualy
+        run: curl -sL https://git.io/fisher --create-dir -o ~/.config/fish/functions/fisher.fish
         
       - name: Test fish shell
         run: fish -c "fisher update"
