@@ -23,7 +23,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-_ROOT=$(realpath "$(dirname "$0")")
+_ROOT=$(realpath "$(dirname "$0")" || pwd)
+
 cd "$_ROOT"
 
 link_dotfile()
