@@ -1,11 +1,6 @@
-if not functions -q fisher
-    if status is-interactive
-        curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher
-        set_color yellow; echo automatically installed fisher; set_color normal
-    else
-        curl -sL https://git.io/fisher -o > ~/.config/fish/functions/fisher.fish
-        echo fisher installed
-    end
+if not functions -q fisher && status is-interactive
+    curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher
+    set_color yellow; echo automatically installed fisher; set_color normal
 end
 
 function fish_path_add
