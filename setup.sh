@@ -23,11 +23,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-if [ "$OSTYPE" = "linux-gnu" ]; then
-    _ROOT=$(realpath "$(dirname "$0")")
-else
-    _ROOT=.
-fi
+_ROOT=$(realpath "$(dirname "$0")" || pwd)
 
 cd "$_ROOT"
 
