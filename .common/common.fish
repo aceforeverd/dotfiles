@@ -1,6 +1,5 @@
-if not functions -q fisher
-    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+if status is-interactive && not functions -q fisher
+    curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher
 end
 
 function fish_path_add
