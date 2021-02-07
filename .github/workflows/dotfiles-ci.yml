@@ -53,8 +53,6 @@ jobs:
         
       - name: fish-actions/install-fish
         uses: fish-actions/install-fish@v1.1.0
-      
-      - name: fish-actions/fisher
 
       - name: fishtape
         uses: fish-actions/fisher@v1.0.0
