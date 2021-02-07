@@ -61,5 +61,5 @@ jobs:
           
       - name: test with fishtape
         run: |
-          echo "source $GITHUB_WORKSPACE/.common/common.fish" > ~/.config/fish/functions/
+          echo "source $GITHUB_WORKSPACE/.common/common.fish" > ~/.config/fish/config.fish
           fish -c "fishtape test/common_test.fish"
