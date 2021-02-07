@@ -60,4 +60,6 @@ jobs:
           plugins: jorgebucaran/fishtape
           
       - name: test with fishtape
-        run: fish -c "echo $GITHUB_WORKSPACE; source .common/common.fish; fishtape test/common_test.fish"
+        run: |
+          echo "source $GITHUB_WORKSPACE/.common/common.fish" > ~/.config/fish/functions/
+          fish -c "fishtape test/common_test.fish"
