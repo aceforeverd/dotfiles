@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # test setup.sh
   build:
     strategy:
       matrix:
@@ -41,3 +41,23 @@ jobs:
       - name: Test fish shell
         run: fish -c "fisher update"
 
+  common_test:
+    # test scripts correctness in .common
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: fish-actions/install-fish
+        uses: fish-actions/install-fish@v1.1.0
+      
+      - name: fish-actions/fisher
+
+      - name: fishtape
+        uses: fish-actions/fisher@v1.0.0
+        with:
+          plugins: jorgebucaran/fishtape
+          
+      - name: test with fishtape
+        run: fish -c "source .common/common.fish; and fishtape test/common_test.fish"
