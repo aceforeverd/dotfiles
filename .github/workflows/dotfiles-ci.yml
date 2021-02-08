@@ -39,7 +39,9 @@ jobs:
         run: curl -sL https://git.io/fisher --create-dir -o ~/.config/fish/functions/fisher.fish
         
       - name: Test fish shell
-        run: fish -c "fisher update"
+        run: |
+          mkdir -p ~/.ssh/
+          fish -c "fisher update"
 
       - name: install fishtape
         run: |
