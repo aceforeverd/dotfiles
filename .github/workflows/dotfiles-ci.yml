@@ -34,6 +34,9 @@ jobs:
       - name: Execute setup.sh
         run: ./setup.sh
 
+      - name: set fisher manualy
+        run: curl -sL https://git.io/fisher --create-dir -o ~/.config/fish/functions/fisher.fish
+
       - name: Test fish shell
         run: |
           mkdir -p ~/.ssh/
