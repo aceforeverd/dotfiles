@@ -41,25 +41,10 @@ jobs:
       - name: Test fish shell
         run: fish -c "fisher update"
 
-  common_test:
-    # test scripts correctness in .common
-    strategy:
-      matrix:
-        os: ["ubuntu-latest", "macos-latest"]
-    runs-on: ${{ matrix.os }}
-    
-    steps:
-      - uses: actions/checkout@v2
-        
-      - name: fish-actions/install-fish
-        uses: fish-actions/install-fish@v1.1.0
-
-      - name: fishtape
-        uses: fish-actions/fisher@v1.0.0
-        with:
-          plugins: jorgebucaran/fishtape
+      - name: install fishtape
+        run: |
+          fish -c "fisher install jorgebucaran/fishtape"
           
       - name: test with fishtape
         run: |
-          echo "source $GITHUB_WORKSPACE/.common/common.fish" > ~/.config/fish/config.fish
           fish -c "fishtape test/common_test.fish"
