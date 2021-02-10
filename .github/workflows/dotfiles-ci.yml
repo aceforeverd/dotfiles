@@ -42,6 +42,10 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           fish -c "fisher update"
+          
+      - name: install coreutils
+        if: ${{ matrix.os }} == 'macos-latest'
+        run: brew install coreutils
 
       - name: install fishtape
         run: |
