@@ -1,7 +1,7 @@
 set -l user_paths $fish_user_paths
 
-set -l TEMP_DIR /tmp/(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-set -l NON_EXIST_PATH /tmp/(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+set -l TEMP_DIR /tmp/(openssl rand -base64 8)
+set -l NON_EXIST_PATH /tmp/(openssl rand -base64 8)
 mkdir -p $TEMP_DIR
 set_color green; echo creating directory $TEMP_DIR; set_color normal
 
