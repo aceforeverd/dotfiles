@@ -1,6 +1,8 @@
 if not functions -q fisher && status is-interactive
     curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher
-    set_color yellow; echo automatically installed fisher; set_color normal
+    isatty stdout; and set_color yellow
+    echo automatically installed fisher
+    isatty stdout; and set_color normal
 end
 
 # add the given path into specified fish variables
@@ -8,23 +10,31 @@ end
 function fish_path_add
     set -l cnt (count $argv 2> /dev/null)
     if test $cnt -ne 2
-        set_color red; echo -e usage: $_ \$fish_variable \$path; set_color normal
+        isatty stdout; and set_color red
+        echo -e usage: $_ \$fish_variable \$path
+        isatty stdout; and set_color normal
         return 3
     end
 
     set -l fish_variable $argv[1]
     set -l pth $argv[2]
     if ! test -d $pth
-        set_color red; echo -e \'$pth\' not a existing path; set_color normal
+        isatty stdout; and set_color red
+        echo -e \'$pth\' not a existing path
+        isatty stdout; and set_color normal
         return 1
     else
         set -l pth (realpath -s $pth)
         if fish -c "contains -- $pth \$$fish_variable"
-            set_color yellow; echo -e $pth already added in $fish_variable; set_color normal
+            isatty stdout; and set_color yellow
+            echo -e $pth already added in $fish_variable
+            isatty stdout; and set_color normal
             return 2
         else
             fish -c "set -U $fish_variable \$$fish_variable $pth"
-            set_color green; echo -e added $pth to $fish_variable; set_color normal
+            isatty stdout; and set_color green
+            echo -e added $pth to $fish_variable
+            isatty stdout; and set_color normal
         end
     end
 end
@@ -34,7 +44,9 @@ end
 function fish_path_rm
     set -l cnt (count $argv 2> /dev/null)
     if test $cnt -ne 2
-        set_color red; echo -e usage: $_ \$fish_variable \$path; set_color normal
+        isatty stdout; and set_color red
+        echo -e usage: $_ \$fish_variable \$path
+        isatty stdout; and set_color normal
         return 3
     end
 
@@ -45,9 +57,13 @@ function fish_path_rm
     if test $index -gt 0
         set -l path_removing "$fish_variable"[$index]
         fish -c "set -e -U $path_removing"
-        set_color green; echo -e removed $pth from $fish_variable; set_color normal
+        isatty stdout; and set_color green
+        echo -e removed $pth from $fish_variable
+        isatty stdout; and set_color normal
     else
-        set_color red; echo -e \'$pth\' not found in $fish_variable; set_color normal
+        isatty stdout; and set_color red
+        echo -e \'$pth\' not found in $fish_variable
+        isatty stdout; and set_color normal
         return 1
     end
 end
