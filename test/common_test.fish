@@ -3,7 +3,10 @@ set -l user_paths $fish_user_paths
 set -l TEMP_DIR /tmp/(openssl rand -base64 8)
 set -l NON_EXIST_PATH /tmp/(openssl rand -base64 8)
 mkdir -p $TEMP_DIR
-set_color green; echo creating directory $TEMP_DIR; set_color normal
+
+isatty; and set_color green
+echo creating directory $TEMP_DIR
+isatty; and set_color normal
 
 @test "fish_user_paths: not contains me" (contains -- $TEMP_DIR $fish_user_paths) $status -ne 0
 
@@ -32,4 +35,6 @@ cat test.log
 
 rm -r $TEMP_DIR
 rm test.log
-set_color green; echo removed $TEMP_DIR; set_color normal
+isatty; and set_color green
+echo removed $TEMP_DIR
+isatty; and set_color normal
