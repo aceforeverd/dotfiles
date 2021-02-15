@@ -35,6 +35,7 @@ function fish_path_add
             isatty; and set_color green
             echo -e added $pth to $fish_variable
             isatty; and set_color normal
+            return 0
         end
     end
 end
@@ -60,6 +61,7 @@ function fish_path_rm
         isatty; and set_color green
         echo -e removed $pth from $fish_variable
         isatty; and set_color normal
+        return 0
     else
         isatty; and set_color red
         echo -e \'$pth\' not found in $fish_variable
