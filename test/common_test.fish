@@ -4,6 +4,8 @@ set -l TEMP_DIR /tmp/(openssl rand -base64 8)
 set -l NON_EXIST_PATH /tmp/(openssl rand -base64 8)
 mkdir -p $TEMP_DIR
 
+set_color -c
+
 isatty; and set_color green
 echo creating directory $TEMP_DIR
 isatty; and set_color normal
