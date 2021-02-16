@@ -22,10 +22,11 @@ bat:
   - .config/bat/**/*
   
 github:
-  - .github/**/*
+  - .github/**
   
 vim:
   - .gvimrc
+  - .ideavimrc
   - .vimrc
   - .vim/**/*
   - .config/nvim/**/*
@@ -34,5 +35,3 @@ scripts:
   - .scripts/**/*
   - setup.sh
   
-others:
-  - ./*
