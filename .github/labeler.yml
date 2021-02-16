@@ -1,0 +1,38 @@
+bash:
+  - .bashrc
+  - .common/**/*.bash
+  - test/**/*.bash
+  
+zsh:
+  - .zshrc
+  - .zshenv
+  - .common/**/*.zsh
+  - test/**/*.zsh
+  
+fish:
+  - .common/**/*.fish
+  - .config/fish/**/*
+  - test/**/*.fish
+  
+tmux:
+  - .tmux.conf
+  - .tmux/**/*
+  
+bat:
+  - .config/bat/**/*
+  
+github:
+  - .github/**/*
+  
+vim:
+  - .gvimrc
+  - .vimrc
+  - .vim/**/*
+  - .config/nvim/**/*
+  
+scripts:
+  - .scripts/**/*
+  - setup.sh
+  
+others:
+  - ./*
