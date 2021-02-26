@@ -41,3 +41,7 @@ fi
 TRAPWINCH() {
   zle && { zle reset-prompt; zle -R }
 }
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/danielace/.sdkman"
+[[ -s "/Users/danielace/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/danielace/.sdkman/bin/sdkman-init.sh"
