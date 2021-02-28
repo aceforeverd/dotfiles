@@ -50,6 +50,10 @@ link_dotfile '.zshrc'
 
 link_dotfile ".config/fish/fish_plugins"
 link_dotfile '.config/bat/config'
+link_dotfile '.config/git/gitattributes'
+
+cp .config/git/gitconfig ~/.gitconfig
+echo "update user info in $HOME/.gitconfig"
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
