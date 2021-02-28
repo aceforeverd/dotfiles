@@ -43,5 +43,7 @@ TRAPWINCH() {
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/danielace/.sdkman"
-[[ -s "/Users/danielace/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/danielace/.sdkman/bin/sdkman-init.sh"
+if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+    export SDKMAN_DIR="$HOME/.sdkman"
+    source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
