@@ -53,7 +53,7 @@ link_dotfile '.config/bat/config'
 link_dotfile '.config/git/gitattributes'
 
 cp .config/git/gitconfig ~/.gitconfig
-echo "update user info in $HOME/.gitconfig"
+echo -e "${GREEN}remember to update user info in $HOME/.gitconfig${NC}"
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
