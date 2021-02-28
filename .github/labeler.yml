@@ -2,39 +2,43 @@ bash:
   - .bashrc
   - .common/**/*.bash
   - test/**/*.bash
-  
+
 zsh:
   - .zshrc
   - .zshenv
   - .common/**/*.zsh
   - test/**/*.zsh
-  
+
 fish:
   - .common/**/*.fish
   - .config/fish/**/*
   - test/**/*.fish
-  
+
 tmux:
   - .tmux.conf
   - .tmux/**/*
-  
+
 bat:
   - .config/bat/**/*
-  
+
 github:
   - .github/**
-  
+
 vim:
   - .gvimrc
   - .ideavimrc
   - .vimrc
   - .vim/**/*
   - .config/nvim/**/*
-  
+
+git:
+  - .gitignore
+  - .config/git/**
+
 scripts:
   - .scripts/**/*
   - setup.sh
-  
+
 doc:
   - README*
   - LICENSE*

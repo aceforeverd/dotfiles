@@ -1,0 +1,26 @@
+[user]
+	name = $User
+	email = $Email
+[core]
+	editor = nvim
+	attributesfile = $Path
+    pager = delta
+[commit]
+	gpgSign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff "dyff"]
+	command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
+
+[delta]
+    side-by-side = false
+    line-numbers = true
+    syntax-theme = Monokai Extended
+    plus-color = "#012800"
+    minus-color = "#340001"
+
+[interactive]
+    diffFilter = delta --color-only
