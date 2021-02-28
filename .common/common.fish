@@ -110,4 +110,30 @@ if not functions -q fish_complete_path_rm
     funcsave fish_complete_path_rm
 end
 
+if not functions -q addcompaths
+    function addcompaths
+        function addcompath
+            if count $argv > /dev/null
+                if ! test -d $argv[1]
+                    set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
+                else
+                    set -l pth (realpath -s $argv[1])
+                    if contains -- $pth $fish_complete_path
+                        set_color yellow; echo -e $pth already added; set_color normal
+                    else
+                        set -U fish_complete_path $fish_complete_path $pth
+                        set_color green; echo -e added $pth to fish_complete_path; set_color normal
+                    end
+                end
+            end
+        end
+
+        for ph in $argv
+            addcompath $ph
+        end
+    end
+
+    funcsave addcompaths
+end
+
 set -x GPG_TTY (tty)

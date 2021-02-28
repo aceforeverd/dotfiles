@@ -44,6 +44,8 @@ link_dotfile()
     echo -e "${GREEN}setted $_file ${NC}"
 }
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 link_dotfile '.tmux.conf'
 link_dotfile '.bashrc'
 link_dotfile '.zshrc'
