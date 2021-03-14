@@ -30,6 +30,19 @@ cat test.log
 @test "fish_user_paths_rm: removed" (fish_user_paths_rm $TEMP_DIR > test.log) $status -eq 0
 echo -n -e "\t"
 cat test.log
+@test "fish_user_paths_rm: temp dir removed" (contains -- $TEMP_DIR $fish_user_paths) $status -ne 0
+
+set -l SPACE_PATH '/tmp/Path with space'
+mkdir -p $SPACE_PATH
+@test "fish_user_paths_add: work with space path" (fish_user_paths_add $SPACE_PATH > test.log) $status -eq 0
+echo -n -e "\t"
+cat test.log
+@test "fish_user_paths_add: space path really added" (contains -- $SPACE_PATH $fish_user_paths) $status -eq 0
+
+@test "fish_user_paths_rm: removing space path" (fish_user_paths_rm $SPACE_PATH > test.log) $status -eq 0
+echo -n -e "\t"
+cat test.log
+@test "fish_user_paths_rm: space path removed" (contains -- $SPACE_PATH $fish_user_paths) $status -ne 0
 
 rm -r $TEMP_DIR
 rm test.log
