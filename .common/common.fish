@@ -31,7 +31,7 @@ function fish_path_add
             isatty; and set_color normal
             return 2
         else
-            fish -c "set -U $fish_variable \$$fish_variable $pth"
+            fish -c "set -U $fish_variable \$$fish_variable '$pth'"
             isatty; and set_color green
             echo -e added $pth to $fish_variable
             isatty; and set_color normal
@@ -54,7 +54,7 @@ function fish_path_rm
     set -l fish_variable $argv[1]
     set -l pth (realpath -s $argv[2] 2> /dev/null); or set -l pth $argv[2]
 
-    set -l index (fish -c "contains -i $pth \$$fish_variable; or echo 0")
+    set -l index (fish -c "contains -i '$pth' \$$fish_variable; or echo 0")
     if test $index -gt 0
         set -l path_removing "$fish_variable"[$index]
         fish -c "set -e -U $path_removing"
