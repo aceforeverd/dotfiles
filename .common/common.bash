@@ -63,7 +63,11 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
     eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
 fi
 
-alias ls="ls -v --color=auto --group-directories-first"
+if [[ $OSTYPE = 'linux-gnu' ]]; then
+    alias ls="ls -v --color=auto --group-directories-first"
+elif [[ $OSTYPE = "darwin"* ]]; then
+    alias ls="ls -v -G"
+fi
 alias l="ls -a"
 alias ll="ls -al"
 alias cp="cp -v"

@@ -23,7 +23,11 @@ function add_env_path() {
     done
 }
 
-alias ls="ls -v --color=auto --group-directories-first"
+if [[ $OSTYPE = 'linux-gnu' ]]; then
+    alias ls="ls -v --color=auto --group-directories-first"
+elif [[ $OSTYPE = "darwin"* ]]; then
+    alias ls="ls -v -G"
+fi
 alias ll="ls -al"
 alias cp="cp -v"
 alias mv="mv -v"
