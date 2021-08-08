@@ -136,4 +136,13 @@ if not functions -q addcompaths
     funcsave addcompaths
 end
 
+if type -q exa
+    # replace ls with exa, modern ls impl
+    function ls
+        exa $argv
+    end
+
+    funcsave ls
+end
+
 set -x GPG_TTY (tty)
