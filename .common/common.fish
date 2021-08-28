@@ -136,10 +136,17 @@ if not functions -q addcompaths
     funcsave addcompaths
 end
 
-if type -q exa
-    # replace ls with exa, modern ls impl
+if type -q lsd
+    # use https://github.com/Peltoche/lsd as alternative to ls
     function ls
-        exa $argv
+        lsd $argv
+    end
+
+    funcsave ls
+else if type -q exa
+    # or use https://github.com/ogham/exa
+    function ls
+        exa --icons $argv
     end
 
     funcsave ls
