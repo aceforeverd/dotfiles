@@ -1,5 +1,6 @@
 if not functions -q fisher && status is-interactive
     curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher
+    # some fish plugin require install ghcup, openssh-server, sdkman, nvm
     isatty; and set_color yellow
     echo automatically installed fisher
     isatty; and set_color normal
@@ -136,20 +137,33 @@ if not functions -q addcompaths
     funcsave addcompaths
 end
 
-if type -q lsd
+if type -qf lsd
     # use https://github.com/Peltoche/lsd as alternative to ls
     function ls
         lsd $argv
     end
 
     funcsave ls
-else if type -q exa
+else if type -qf exa
     # or use https://github.com/ogham/exa
     function ls
         exa --icons $argv
     end
 
     funcsave ls
+end
+
+if type -qf zoxide
+    zoxide init fish | source
+end
+
+if type -qf fff
+    function f
+        fff $argv
+        set -q XDG_CACHE_HOME; or set XDG_CACHE_HOME $HOME/.cache
+        cd (cat $XDG_CACHE_HOME/fff/.fff_d)
+    end
+    funcsave f
 end
 
 set -x GPG_TTY (tty)

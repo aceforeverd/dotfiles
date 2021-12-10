@@ -12,10 +12,17 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[diff]
+    colorMoved = default
 [diff "dyff"]
 	command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
 
+[alias]
+    lessdiff = -c core.pager=less diff
+
 [delta]
+    navigate = true
     side-by-side = false
     line-numbers = true
     syntax-theme = Monokai Extended
@@ -24,3 +31,5 @@
 
 [interactive]
     diffFilter = delta --color-only
+[merge]
+    tool = nvim
