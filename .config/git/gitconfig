@@ -26,8 +26,6 @@
     side-by-side = false
     line-numbers = true
     syntax-theme = Monokai Extended
-    plus-color = "#012800"
-    minus-color = "#340001"
 
 [interactive]
     diffFilter = delta --color-only
