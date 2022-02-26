@@ -75,3 +75,6 @@ alias mv="mv -v"
 alias rm="rm -v"
 
 export GPG_TTY=$(tty)
+
+# disable copy mac ._ files
+export COPYFILE_DISABLE=1

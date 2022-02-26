@@ -50,13 +50,16 @@ link_dotfile '.tmux.conf'
 link_dotfile '.bashrc'
 link_dotfile '.zshrc'
 
-link_dotfile ".config/fish/fish_plugins"
+link_dotfile '.config/fish/fish_plugins'
 link_dotfile '.config/bat/config'
 link_dotfile '.config/git/gitattributes'
+link_dotfile '.config/alacritty/alacritty.yml'
 
 cp .config/git/gitconfig ~/.gitconfig
 echo -e "${GREEN}remember to update user info in $HOME/.gitconfig${NC}"
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
-end" > "$HOME/.config/fish/config.fish"
+end
+test -e {\$HOME}/.iterm2_shell_integration.fish ; and source {\$HOME}/.iterm2_shell_integration.fish ; or true
+" > "$HOME/.config/fish/config.fish"
