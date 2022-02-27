@@ -375,24 +375,24 @@ font:
   #
   #command: None
 
-#selection:
+selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  save_to_clipboard: true
 
-#cursor:
+cursor:
   # Cursor style
-  #style:
+  style:
     # Cursor shape
     #
     # Values for `shape`:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    #shape: Block
+    shape: Underline
 
     # Cursor blinking state
     #
@@ -401,7 +401,7 @@ font:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    blinking: On
 
   # Vi mode cursor style
   #
@@ -423,7 +423,7 @@ font:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -747,7 +747,7 @@ shell:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -857,6 +857,8 @@ shell:
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+  - { key: T,             mods: Command,                    action: CreateNewWindow      }
+  - { key: Return,        mods: Command,                  action: ToggleSimpleFullscreen }
 
 #debug:
   # Display the time it takes to redraw each frame.
