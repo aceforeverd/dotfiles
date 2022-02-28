@@ -54,6 +54,7 @@ link_dotfile '.config/fish/fish_plugins'
 link_dotfile '.config/bat/config'
 link_dotfile '.config/git/gitattributes'
 link_dotfile '.config/alacritty/alacritty.yml'
+link_dotfile '.config/kitty/kitty.conf'
 
 cp .config/git/gitconfig ~/.gitconfig
 echo -e "${GREEN}remember to update user info in $HOME/.gitconfig${NC}"
