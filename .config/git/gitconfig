@@ -1,12 +1,19 @@
 [user]
-	name = $User
-	email = $Email
+	# fill this in
+	# name = $User
+	# email = $Email
+	# signingkey = ?
 [core]
 	editor = nvim
-	attributesfile = $Path
-    pager = delta
+	# attributesfile = $Path
+	pager = delta
 [commit]
 	gpgSign = true
+#[http]
+#	proxy = ?
+#[https]
+#	proxy = ?
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -15,8 +22,6 @@
 
 [diff]
     colorMoved = default
-[diff "dyff"]
-	command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
 
 [alias]
     lessdiff = -c core.pager=less diff
