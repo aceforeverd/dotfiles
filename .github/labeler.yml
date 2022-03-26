@@ -39,6 +39,15 @@ scripts:
   - .scripts/**/*
   - setup.sh
 
+gpg:
+  - .gnupg/**/*
+
+kitty:
+  - .config/kitty/**/*
+
+alacritty:
+  - .config/alacritty/**/*
+
 doc:
   - README*
   - LICENSE*
