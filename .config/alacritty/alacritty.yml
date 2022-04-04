@@ -447,7 +447,8 @@ shell:
 #working_directory: None
 
 # Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: false
+# make Alt work in vim: e.g use Options as alt on mac
+alt_send_esc: true
 
 # Offer IPC using `alacritty msg` (unix only)
 #ipc_socket: true
