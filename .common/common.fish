@@ -71,86 +71,68 @@ function fish_path_rm
     end
 end
 
-if not functions -q fish_user_paths_add
-    function fish_user_paths_add
-        for ph in $argv
-            fish_path_add fish_user_paths $ph; or return $status
-        end
+function fish_user_paths_add
+    for ph in $argv
+        fish_path_add fish_user_paths $ph; or return $status
     end
-
-    funcsave fish_user_paths_add
 end
 
-if not functions -q fish_user_paths_rm
-    function fish_user_paths_rm
-        for ph in $argv
-            fish_path_rm fish_user_paths $ph; or return $status
-        end
+function fish_user_paths_rm
+    for ph in $argv
+        fish_path_rm fish_user_paths $ph; or return $status
     end
-
-    funcsave fish_user_paths_rm
 end
 
-if not functions -q fish_complete_path_add
-    function fish_complete_path_add
-        for ph in $argv
-            fish_path_add fish_complete_path $ph; or return $status
-        end
+function fish_complete_path_add
+    for ph in $argv
+        fish_path_add fish_complete_path $ph; or return $status
     end
-
-    funcsave fish_complete_path_add
 end
 
-if not functions -q fish_complete_path_rm
-    function fish_complete_path_rm
-        for ph in $argv
-            fish_path_rm fish_complete_path $ph; or return $status
-        end
+function fish_complete_path_rm
+    for ph in $argv
+        fish_path_rm fish_complete_path $ph; or return $status
     end
-
-    funcsave fish_complete_path_rm
 end
 
-if not functions -q addcompaths
-    function addcompaths
-        function addcompath
-            if count $argv > /dev/null
-                if ! test -d $argv[1]
-                    set_color red; echo -e \'$argv[1]\' not a existing path; set_color normal
+function addcompaths
+    function addcompath
+        if count $argv >/dev/null
+            if ! test -d $argv[1]
+                set_color red
+                echo -e \'$argv[1]\' not a existing path
+                set_color normal
+            else
+                set -l pth (realpath -s $argv[1])
+                if contains -- $pth $fish_complete_path
+                    set_color yellow
+                    echo -e $pth already added
+                    set_color normal
                 else
-                    set -l pth (realpath -s $argv[1])
-                    if contains -- $pth $fish_complete_path
-                        set_color yellow; echo -e $pth already added; set_color normal
-                    else
-                        set -U fish_complete_path $fish_complete_path $pth
-                        set_color green; echo -e added $pth to fish_complete_path; set_color normal
-                    end
+                    set -U fish_complete_path $fish_complete_path $pth
+                    set_color green
+                    echo -e added $pth to fish_complete_path
+                    set_color normal
                 end
             end
         end
-
-        for ph in $argv
-            addcompath $ph
-        end
     end
 
-    funcsave addcompaths
+    for ph in $argv
+        addcompath $ph
+    end
 end
 
 if type -qf lsd
     # use https://github.com/Peltoche/lsd as alternative to ls
-    function ls
-        lsd $argv
+    function ls -w lsd -d "lsd as ls"
+        command lsd $argv
     end
-
-    funcsave ls
 else if type -qf exa
     # or use https://github.com/ogham/exa
-    function ls
-        exa --icons $argv
+    function ls -w exa -d "exa as ls"
+        command exa --icons $argv
     end
-
-    funcsave ls
 end
 
 if type -qf zoxide
@@ -163,7 +145,6 @@ if type -qf fff
         set -q XDG_CACHE_HOME; or set XDG_CACHE_HOME $HOME/.cache
         cd (cat $XDG_CACHE_HOME/fff/.fff_d)
     end
-    funcsave f
 end
 
 set -x GPG_TTY (tty)
