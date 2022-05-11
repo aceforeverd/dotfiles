@@ -147,4 +147,10 @@ if type -qf fff
     end
 end
 
+if type -qf tmux
+    function tmux -w tmux -d "tmux wrapper to let italic available"
+        env TERM=screen-256color command tmux
+    end
+end
+
 set -x GPG_TTY (tty)
