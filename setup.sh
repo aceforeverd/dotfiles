@@ -32,6 +32,7 @@ link_dotfile()
     local _file=$1
     if [ -e "$HOME/$_file" ]; then
         mv "$HOME/$_file" "$HOME/$_file.backup"
+        echo "old file $HOME/$_file backup to $HOME/$_file.backup"
     fi
 
     local _dir
@@ -44,7 +45,9 @@ link_dotfile()
     echo -e "${GREEN}setted $_file ${NC}"
 }
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 link_dotfile '.tmux.conf'
 link_dotfile '.bashrc'
@@ -58,6 +61,10 @@ link_dotfile '.config/kitty/kitty.conf'
 
 cp .config/git/gitconfig ~/.gitconfig
 echo -e "${GREEN}remember to update user info in $HOME/.gitconfig${NC}"
+
+if [ -e "$HOME/.config/fish/config.fish" ]; then
+    mv "$HOME/.config/fish/config.fish" "$HOME/.config/fish/config.backup"
+fi
 
 echo "if test -r $_ROOT/.common/common.fish
     source $_ROOT/.common/common.fish
