@@ -149,8 +149,12 @@ end
 
 if type -qf tmux
     function tmux -w tmux -d "tmux wrapper to let italic available"
-        env TERM=screen-256color command tmux
+        env TERM=screen-256color command tmux $argv
     end
+end
+
+if type -qf pyenv
+    pyenv init - | source
 end
 
 set -x GPG_TTY (tty)
