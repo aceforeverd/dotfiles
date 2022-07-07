@@ -153,6 +153,10 @@ if type -qf tmux
     end
 end
 
+function rm -w rm -d "rm with -v"
+    command rm -v $argv
+end
+
 if type -qf pyenv
     pyenv init - | source
 end
