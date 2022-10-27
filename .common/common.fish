@@ -149,7 +149,7 @@ end
 
 if type -qf tmux
     function tmux -w tmux -d "tmux wrapper to let italic available"
-        env TERM=screen-256color command tmux $argv
+        command env TERM=screen-256color tmux $argv
     end
 end
 
