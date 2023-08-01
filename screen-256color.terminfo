@@ -5,9 +5,13 @@
 #
 #   tic screen-256color.terminfo
 #
+# compiled file goes to ~/.terminfo
+#
 # Usage:
 #
-#   export TERM=screen-256color
+#   env TERM=screen-256color tmux
+#
+# You may see screen-256color-it.terminfo as well
 #
 screen-256color|screen with 256 colors and italic,
         sitm=\E[3m, ritm=\E[23m,
