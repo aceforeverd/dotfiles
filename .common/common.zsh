@@ -32,6 +32,7 @@ alias ll="ls -al"
 alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
+alias tmux="env TERM=screen-256color tmux"
 
 export GPG_TTY=$(tty)
 
