@@ -47,3 +47,7 @@ if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
     export SDKMAN_DIR="$HOME/.sdkman"
     source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
+
+if command -v zoxide > /dev/null ; then
+  eval "$(zoxide init zsh)"
+fi

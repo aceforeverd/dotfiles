@@ -31,4 +31,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-[ -f "/home/ace/.ghcup/env" ] && source "/home/ace/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+
+if command -v zoxide > /dev/null ; then
+    eval "$(zoxide init bash)"
+fi
