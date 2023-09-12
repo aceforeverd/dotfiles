@@ -162,3 +162,6 @@ if type -qf pyenv
 end
 
 set -x GPG_TTY (tty)
+
+# vi key bindings but also <c-a>/<c-f> etc
+fish_hybrid_key_bindings
