@@ -36,3 +36,6 @@ export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_P
 if command -v zoxide > /dev/null ; then
     eval "$(zoxide init bash)"
 fi
+if command -v pyenv > /dev/null ; then
+    eval "$(pyenv init -)"
+fi

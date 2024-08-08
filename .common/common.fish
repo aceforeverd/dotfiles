@@ -9,6 +9,7 @@ end
 # add the given path into specified fish variables
 # return 0 on success, 1 on path not exist/invalid path, 2 on path already added, 3 others
 function fish_path_add
+    # TODO: use the fish command `fish_add_path`
     set -l cnt (count $argv 2> /dev/null)
     if test $cnt -ne 2
         isatty; and set_color red

@@ -6,3 +6,4 @@ set ignorecase
 set scrolloff=4
 set wildmenu
 set nocompatible
+set ideajoin
