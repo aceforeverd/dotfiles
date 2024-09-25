@@ -6,6 +6,24 @@ if not functions -q fisher && status is-interactive
     isatty; and set_color normal
 end
 
+
+function _realpath_strip
+    set -l ostype (uname)
+    set -l cmd_realpath 'realpath'
+    if type -qf grealpath
+        set -l cmd_realpath 'grealpath'
+        set -l realpath_args '-s'
+    end
+
+    if test $ostype = "Linux"
+        set -l realpath_args '-s'
+    end
+
+    $cmd_realpath $realpath_args $argv
+end
+
+
+
 # add the given path into specified fish variables
 # return 0 on success, 1 on path not exist/invalid path, 2 on path already added, 3 others
 function fish_path_add
@@ -26,7 +44,7 @@ function fish_path_add
         isatty; and set_color normal
         return 1
     else
-        set -l pth (realpath -s $pth)
+        set -l pth (_realpath_strip $pth)
         if fish -c "contains -- $pth \$$fish_variable"
             isatty; and set_color yellow
             echo -e $pth already added in $fish_variable
@@ -54,7 +72,7 @@ function fish_path_rm
     end
 
     set -l fish_variable $argv[1]
-    set -l pth (realpath -s $argv[2] 2> /dev/null); or set -l pth $argv[2]
+    set -l pth (_realpath_strip $argv[2] 2> /dev/null); or set -l pth $argv[2]
 
     set -l index (fish -c "contains -i '$pth' \$$fish_variable; or echo 0")
     if test $index -gt 0
@@ -104,7 +122,7 @@ function addcompaths
                 echo -e \'$argv[1]\' not a existing path
                 set_color normal
             else
-                set -l pth (realpath -s $argv[1])
+                set -l pth (_realpath_strip $argv[1])
                 if contains -- $pth $fish_complete_path
                     set_color yellow
                     echo -e $pth already added
