@@ -119,7 +119,8 @@ font:
     #   - (Windows) Consolas
     # My default:
     #   - (macOS): FiraCode Nerd Font
-    family: FiraCode Nerd Font
+    family: JetBrainsMono Nerd Font
+    # family: FiraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -130,7 +131,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font
+    family: JetBrainsMono Nerd Font
+    # family: FiraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -832,6 +834,8 @@ key_bindings:
   #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
   #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
   #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
+  - { key: N,             mods: Control|Shift,                    action: SpawnNewInstance }
+  - { key: T,             mods: Control|Shift,                    action: CreateNewWindow }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
@@ -857,8 +861,8 @@ key_bindings:
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
-  - { key: T,             mods: Command,                    action: CreateNewWindow      }
-  - { key: Return,        mods: Command,                  action: ToggleSimpleFullscreen }
+  # - { key: T,             mods: Command,                    action: CreateNewWindow      }
+  # - { key: Return,        mods: Command,                  action: ToggleSimpleFullscreen }
 
   - { key: A,         mods: Alt,       chars: "\x1ba" }
   - { key: B,         mods: Alt,       chars: "\x1bb" }

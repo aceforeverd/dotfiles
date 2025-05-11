@@ -54,3 +54,5 @@ fi
 if command -v pyenv > /dev/null ; then
     eval "$(pyenv init -)"
 fi
+
+if [ -e /home/ace/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ace/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

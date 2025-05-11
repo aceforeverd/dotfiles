@@ -162,6 +162,14 @@ if type -qf pyenv
     pyenv init - | source
 end
 
+if test -e $HOME/.nix-profile/etc/profile.d/nix.fish
+    source $HOME/.nix-profile/etc/profile.d/nix.fish
+end
+
+if type -qf kubectl
+    kubectl completion fish | source
+end
+
 set -x GPG_TTY (tty)
 
 # vi key bindings but also <c-a>/<c-f> etc

@@ -3,8 +3,10 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
+# locale setting should manage by your system, don't set
+# export LANG=en_US.UTF-8
+# export LANGUAGE=en_US.UTF-8
+
 if [[ -n "$SSH_CONNECTION" ]] ; then
     export PINENTRY_USER_DATA="USER_CURSES=1"
 fi
@@ -12,7 +14,11 @@ fi
 if [ -r "$HOME/.dotfiles/.common/common.bash" ] ; then
     . "$HOME/.dotfiles/.common/common.bash"
 
-    # add_env_path
+    add_env_path \
+        ~/.cargo/bin \
+        ~/.local/bin \
+        ~/go/bin \
+        ~/.ghcup/bin
 fi
 
 
@@ -39,3 +45,5 @@ fi
 if command -v pyenv > /dev/null ; then
     eval "$(pyenv init -)"
 fi
+
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
